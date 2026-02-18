@@ -5,6 +5,7 @@
 
 ![параметры виртуальной машины в процессе создания (имя ВМ, память, диск)](screenshots/01-vm-settings.png)
 ![командная строка Ubuntu после установки с приглашением фамилия@фамилия:~$](screenshots/02-vm-console.png)
+---
 2. Информация о системе
 Выполнить команды и сохранить вывод в файл ~/report/01-system.txt:
 mkdir -p ~/report
@@ -26,6 +27,7 @@ df -h >> ~/report/01-system.txt
 Скриншоты:
 
 ![вывод cat ~/report/01-system.txt](screenshots/03-system-info.png)
+---
 3. Сеть: IP-адрес и открытые порты
 Выполнить команды и сохранить в ~/report/02-network.txt:
 echo '=== IP-АДРЕСА ===' > ~/report/02-network.txt
@@ -38,6 +40,7 @@ sudo ss -tlnp >> ~/report/02-network.txt
 
 ![вывод ip addr show](screenshots/04-ip-addr.png)
 ![вывод sudo ss -tlnp](screenshots/05-ports.png)
+---
 4. Сервис SSH
 Проверить статус сервиса SSH и определить его порт. Сохранить в ~/report/03-ssh.txt:
 echo '=== СТАТУС SSH ===' > ~/report/03-ssh.txt
@@ -50,6 +53,7 @@ sudo ss -tlnp | grep ssh >> ~/report/03-ssh.txt
 
 ![вывод sudo systemctl status ssh](screenshots/06-ssh-status.png)
 ![вывод sudo ss -tlnp | grep ssh](screenshots/07-ssh-port.png)
+---
 5. Пользователи и группы
 Вывести информацию о пользователях и группах. Создать пользователя boardy, добавить в группу sudo. Сохранить в ~/report/04-users.txt:
 echo '=== ТЕКУЩИЙ ПОЛЬЗОВАТЕЛЬ ===' > ~/report/04-users.txt
@@ -75,6 +79,7 @@ id boardy
 ![вывод grep '/bin/bash' /etc/passwd](screenshots/08-users.png)
 ![процесс создания пользователя boardy](screenshots/09-new-user.png)
 ![вывод id boardy](screenshots/10-user-check.png)
+---
 6. Дерево каталогов
 Изучить структуру файловой системы. Сохранить в ~/report/05-tree.txt:
 echo '=== КОРЕНЬ ===' > ~/report/05-tree.txt
@@ -90,6 +95,7 @@ ls -la ~ >> ~/report/05-tree.txt
 
 ![вывод ls -la /](screenshots/11-root-tree.png)
 ![вывод ls -la ~](12-home-tree.png )
+---
 7. Права доступа
 Посмотреть права на ключевые каталоги и изменить права на тестовом файле. Сохранить в ~/report/06-permissions.txt:
 echo '=== ПРАВА НА КАТАЛОГИ ===' > ~/report/06-permissions.txt
@@ -107,6 +113,7 @@ ls -l ~/report/testfile.txt >> ~/report/06-permissions.txt
 
 ![вывод ls -ld / /etc /var /tmp /home](screenshots/13-permissions.png)
 ![три состояния testfile.txt (до, после chmod 755, после chmod 600)](screenshots/14-chmod.png)
+---
 8. Установленные пакеты и сервисы
 Посмотреть ключевые пакеты и запущенные сервисы. Сохранить в ~/report/07-packages.txt:
 echo '=== КЛЮЧЕВЫЕ ПАКЕТЫ ===' > ~/report/07-packages.txt
@@ -122,6 +129,7 @@ systemctl list-units --type=service --state=running >> ~/report/07-packages.txt
 
 ![вывод dpkg -l | grep -E 'openssh|python|git|curl|vim|nano'](screenshots/15-packages.png)
 ![вывод systemctl list-units --type=service --state=running](screenshots/16-services.png)
+---
 9. Конвейер и перенаправление
 Выполнить комплексные команды с конвейерами. Сохранить в ~/report/08-pipes.txt:
 echo '=== ТОП-10 ПРОЦЕССОВ ПО ПАМЯТИ ===' > ~/report/08-pipes.txt
@@ -138,6 +146,7 @@ sudo du -ah /var 2>/dev/null | sort -rh | head -10 >> ~/report/08-pipes.txt
 ![вывод ps aux --sort=-%mem | head -11](screenshots/17-top-processes.png)
 ![вывод подсчёта процессов по пользователям](screenshots/18-process-count.png)
 ![вывод топ-10 больших файлов в /var](screenshots/19-big-files.png)
+---
 10. Итоговый файл
 Собрать все файлы в один и проверить:
 cat ~/report/0*.txt > ~/report/FULL-REPORT.txt
